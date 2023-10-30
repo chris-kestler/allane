@@ -1,0 +1,11 @@
+FROM flyway/flyway:latest
+
+WORKDIR /flyway
+
+ENV FLYWAY_URL=jdbc:mysql://mysql-container:3306/allane?allowPublicKeyRetrieval=true&useSSL=false
+ENV FLYWAY_USER=root
+ENV FLYWAY_PASSWORD=secure
+
+COPY ./src/main/resources/db/migration/ /flyway/sql/
+
+CMD ["flyway", "migrate"]

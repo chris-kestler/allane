@@ -1,0 +1,8 @@
+FROM mysql:latest
+
+ENV MYSQL_ROOT_PASSWORD=secure
+ENV MYSQL_DATABASE=allane
+
+EXPOSE 3306
+
+CMD ["mysqld"]

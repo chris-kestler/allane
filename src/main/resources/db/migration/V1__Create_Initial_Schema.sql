@@ -1,0 +1,29 @@
+USE allane;
+
+CREATE TABLE customer (
+    id BIGINT NOT NULL AUTO_INCREMENT,
+    vorname varchar(128) DEFAULT NULL,
+    nachname varchar(128) DEFAULT NULL,
+    dob datetime(6) DEFAULT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE vehicle (
+    id BIGINT NOT NULL AUTO_INCREMENT,
+    vin VARCHAR(17) DEFAULT NULL,
+    make VARCHAR(64) DEFAULT NULL,
+    model VARCHAR(64) DEFAULT NULL,
+    year SMALLINT NOT NULL,
+    price FLOAT DEFAULT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE contract (
+    id BIGINT NOT NULL AUTO_INCREMENT,
+    rate FLOAT DEFAULT NULL,
+    customer BIGINT DEFAULT NULL,
+    vehicle BIGINT DEFAULT NULL UNIQUE,
+    PRIMARY KEY (id),
+    FOREIGN KEY (customer) REFERENCES customer(id) ON DELETE SET NULL,
+    FOREIGN KEY (vehicle) REFERENCES vehicle(id)  ON DELETE SET NULL
+)
